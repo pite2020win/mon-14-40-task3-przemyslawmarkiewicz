@@ -28,3 +28,38 @@
 #
 #Delete these comments before commit!
 #Good luck.
+import pandas as pd
+
+
+class GradeBook:
+    def __init__(self, subject, group_id, student_list=None):
+        self.subject = subject
+        self.sroup_id = group_id
+        
+
+    def add_students(self, students):
+        self.students = students
+
+    def add_grade_category(self):
+        pass
+
+    def add_grade(self):
+        pass
+
+    def add_attendance(self):
+        pass
+
+    def class_average(self):
+        pass
+
+
+if __name__ == "__main__":
+
+    df = pd.read_csv("students.csv")
+    students = df.to_dict(orient='records')
+
+    gradebook_1 = GradeBook("Math", 1)
+    gradebook_1.add_students(students)
+
+    print(gradebook_1.students)
+
