@@ -1,0 +1,242 @@
+[
+    {
+        "first_name": "Tom", 
+        "last_name": "Smith",
+        "class_name": "3a",
+        "grades": [
+            {
+                "subject": "math",
+                "grades": [2, 3, 5, 5, 4]
+            },
+            {
+                "subject": "biology",
+                "grades": [3, 3, 1, 5, 4]
+            },
+            {
+                "subject": "english",
+                "grades": [5, 3, 5, 5, 3]
+            }
+        ],
+        "attendance": []
+    },
+    {
+        "first_name": "John", 
+        "last_name": "Novak",
+        "class_name": "3a",
+        "grades": [
+            {
+                "subject": "math",
+                "grades": [3, 5, 5, 4]
+            },
+            {
+                "subject": "biology",
+                "grades": [3, 3, 5, 4]
+            },
+            {
+                "subject": "english",
+                "grades": [5, 5, 5, 5, 3]
+            }
+        ],
+        "attendance": []
+    },
+    {
+        "first_name": "Adam", 
+        "last_name": "James",
+        "class_name": "3a",
+        "grades": [
+            {
+                "subject": "math",
+                "grades": [3, 2, 5, 2, 4]
+            },
+            {
+                "subject": "biology",
+                "grades": [5, 3, 5, 5, 4]
+            },
+            {
+                "subject": "english",
+                "grades": [5, 1, 5, 5, 2]
+            }
+        ],
+        "attendance": []
+    },
+    {
+        "first_name": "Nick", 
+        "last_name": "Maddison",
+        "class_name": "3a",
+        "grades": [
+            {
+                "subject": "math",
+                "grades": [3, 4, 5, 4]
+            },
+            {
+                "subject": "biology",
+                "grades": [3, 5, 4]
+            },
+            {
+                "subject": "english",
+                "grades": [5, 5, 5, 3]
+            }
+        ],
+        "attendance": []
+    },
+    {
+        "first_name": "Ana", 
+        "last_name": "Levis",
+        "class_name": "3b",
+        "grades": [
+            {
+                "subject": "math",
+                "grades": [2, 5, 5, 3]
+            },
+            {
+                "subject": "biology",
+                "grades": [3, 3, 1, 5, 4]
+            },
+            {
+                "subject": "english",
+                "grades": [5, 3, 5, 5, 3, 2, 2]
+            }
+        ],
+        "attendance": []
+    },
+    {
+        "first_name": "John", 
+        "last_name": "Doe",
+        "class_name": "3b",
+        "grades": [
+            {
+                "subject": "math",
+                "grades": [2, 3, 3, 5, 3]
+            },
+            {
+                "subject": "biology",
+                "grades": [3, 3, 3, 4]
+            },
+            {
+                "subject": "english",
+                "grades": [2, 3, 2, 5, 3]
+            }
+        ],
+        "attendance": []
+    },
+    {
+        "first_name": "Emily", 
+        "last_name": "Barnes",
+        "class_name": "3b",
+        "grades": [
+            {
+                "subject": "math",
+                "grades": [5, 5, 5, 5, 4]
+            },
+            {
+                "subject": "biology",
+                "grades": [3, 3, 3, 5, 4]
+            },
+            {
+                "subject": "english",
+                "grades": [5, 5, 3]
+            }
+        ],
+        "attendance": []
+    },
+    {
+        "first_name": "Mave", 
+        "last_name": "Lambert",
+        "class_name": "3b",
+        "grades": [
+            {
+                "subject": "math",
+                "grades": [2, 4, 5, 5, 4]
+            },
+            {
+                "subject": "biology",
+                "grades": [3, 4, 1, 5, 4]
+            },
+            {
+                "subject": "english",
+                "grades": [5, 2, 5, 5, 3]
+            }
+        ],
+        "attendance": []
+    },
+    {
+        "first_name": "Jack", 
+        "last_name": "Sparrow",
+        "class_name": "3c",
+        "grades": [
+            {
+                "subject": "math",
+                "grades": [2, 3, 4]
+            },
+            {
+                "subject": "biology",
+                "grades": [3, 2, 1, 5, 4]
+            },
+            {
+                "subject": "english",
+                "grades": [5, 5, 5, 5, 3]
+            }
+        ],
+        "attendance": []
+    },
+    {
+        "first_name": "Emma", 
+        "last_name": "Olsen",
+        "class_name": "3c",
+        "grades": [
+            {
+                "subject": "math",
+                "grades": [2, 3, 5, 4, 4]
+            },
+            {
+                "subject": "biology",
+                "grades": [3, 3, 4]
+            },
+            {
+                "subject": "english",
+                "grades": [5, 3, 5, 5]
+            }
+        ],
+        "attendance": []
+    },
+    {
+        "first_name": "Claire", 
+        "last_name": "Niles",
+        "class_name": "3c",
+        "grades": [
+            {
+                "subject": "math",
+                "grades": [2, 3, 5, 4]
+            },
+            {
+                "subject": "biology",
+                "grades": [3, 3, 4, 5, 4]
+            },
+            {
+                "subject": "english",
+                "grades": [5, 3, 5, 5, 5]
+            }
+        ],
+        "attendance": []
+    },
+    {
+        "first_name": "Matt", 
+        "last_name": "Linsder",
+        "class_name": "3c",
+        "grades": [
+            {
+                "subject": "math",
+                "grades": [2, 3, 5, 5, 2]
+            },
+            {
+                "subject": "biology",
+                "grades": [3, 3, 1, 5, 3]
+            },
+            {
+                "subject": "english",
+                "grades": [5, 3, 5, 3]
+            }
+        ],
+        "attendance": []
+    }
+]

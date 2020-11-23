@@ -1,65 +1,112 @@
-# Class diary
-#
-# Create program for handling lesson scores.
-# Use python to handle student (highscool) class scores, and attendance.
-# Make it possible to:
-# - Get students total average score (average across classes)
-# - get students average score in class
-# - hold students name and surname
-# - Count total attendance of student
-#
-# Please, use your imagination and create more functionalities.
-# Your project should be able to handle entire school(s?).
-# If you have enough courage and time, try storing (reading/writing)
-# data in text files (YAML, JSON).
-# If you have even more courage, try implementing user interface (might be text-like).
-#
-#Try to expand your implementation as best as you can. 
-#Think of as many features as you can, and try implementing them.
-#Make intelligent use of pythons syntactic sugar (overloading, iterators, generators, etc)
-#Most of all: CREATE GOOD, RELIABLE, READABLE CODE.
-#The goal of this task is for you to SHOW YOUR BEST python programming skills.
-#Impress everyone with your skills, show off with your code.
-#
-#Your program must be runnable with command "python task.py".
-#Show some usecases of your library in the code (print some things)
-#
-#When you are done upload this code to your github repository. 
-#
-#Delete these comments before commit!
-#Good luck.
-import pandas as pd
+from dataclasses import dataclass
+import json
+from statistics import mean
+import logging
+
+logging.basicConfig(filename='data.log', level=logging.DEBUG)
 
 
+@dataclass
 class GradeBook:
-    def __init__(self, subject, group_id, student_list=None):
-        self.subject = subject
-        self.sroup_id = group_id
-        
+    school_name: str
+    students: list
 
-    def add_students(self, students):
-        self.students = students
+    def add_student(self, name, surname, class_name):
+        student_data = {
+            "first_name": name,
+            "last_name": surname,
+            "class_name": class_name,
+            "grades": [],
+            "attendance": []
+        }
+        self.students.append(student_data)
 
-    def add_grade_category(self):
-        pass
+    def get_student(self, name, surname):
+        for stud in self.students:
+            if stud["first_name"] == name and stud["last_name"] == surname:
+                return stud
 
-    def add_grade(self):
-        pass
+    def get_subject_grades(self, stud_name, stud_surname, subject):
+        student = self.get_student(stud_name, stud_surname)
+        grades = student["grades"]
+        for grade in grades:
+            if grade["subject"] == subject:
+                return grade
+            
 
-    def add_attendance(self):
-        pass
+    def add_grade(self, stud_name, stud_surname, subject, grade):
+        grades = self.get_subject_grades(stud_name, stud_surname, subject)
 
-    def class_average(self):
-        pass
+        grades["grades"].append(grade)
+
+    def add_attendance(self, stud_name, stud_surname, date, was_present=True):
+        student = self.get_student(stud_name, stud_surname)
+        attendance_dict = {
+            "date": date,
+            "was_present": was_present
+        }
+        student["attendance"].append(attendance_dict)
+
+    def student_class_average(self, name, surname, subject):
+        grades = self.get_subject_grades(name, surname, subject)
+        return mean(grades["grades"])
+
+    def student_average(self, name, surname):
+        student = self.get_student(name, surname)
+        all_subjects_grades = student["grades"]
+        grade_list = [grade["grades"] for grade in all_subjects_grades]
+        subjects_average = map(lambda grades: mean(grades), grade_list)
+        return mean(list(subjects_average))
+
+    def class_average(self, class_name, subject):
+        grades_list = []
+        for stud in self.students:
+            if stud["class_name"] == class_name:
+                grades_list.append(self.get_subject_grades(stud["first_name"], stud["last_name"], subject))
+        grades = [grade["grades"] for grade in grades_list]
+        each_stud_average = map(lambda grades: mean(grades), grades)
+        return mean(list(each_stud_average))
+
+    def student_attendance(self, name, surname):
+        student = self.get_student(name, surname)
+        return student["attendance"]
 
 
 if __name__ == "__main__":
 
-    df = pd.read_csv("students.csv")
-    students = df.to_dict(orient='records')
+    f = open("students.json")
+    students = json.load(f)
+    gradebook1 = GradeBook("Good School", students)
 
-    gradebook_1 = GradeBook("Math", 1)
-    gradebook_1.add_students(students)
+    logging.info("Average math scores of students from 3a: "
+    f"{gradebook1.class_average('3a', 'math')}")
 
-    print(gradebook_1.students)
+    tom_smith = gradebook1.get_student("Tom", "Smith")
+    logging.info(f"example student: {tom_smith}")
+    gradebook1.add_attendance("Tom", "Smith", "13.04.2020")
+    gradebook1.add_attendance("Tom", "Smith", "14.04.2020")
+    gradebook1.add_attendance("Tom", "Smith", "15.04.2020", False)
 
+
+    logging.info(f"Tom smith attendance: "
+    f"{gradebook1.student_attendance('Tom', 'Smith')}")
+
+    logging.info(f"Average math grades of tom smith: "
+        f"{gradebook1.student_class_average('Tom', 'Smith', 'math')}")
+    gradebook1.add_grade("Tom", "Smith", "math", 6)
+    logging.info(f"Average math grades of tom smith after adding new grade: " 
+        f"{gradebook1.student_class_average('Tom', 'Smith', 'math')}")
+
+    logging.info(f"Average Tom Smith's grades: "
+    f"{gradebook1.student_average('Tom', 'Smith')}")
+    
+    gradebook1.add_grade("Tom", "Smith", "biology", 6)
+    gradebook1.add_grade("Tom", "Smith", "english", 6)
+
+    logging.info(f"Average Tom Smith's grades after adding new ones: "
+    f"{gradebook1.student_average('Tom', 'Smith')}")
+
+    logging.info("Average math scores of students from 3a: "
+    f"{gradebook1.class_average('3a', 'math')}")
+    
+    logging.info(f"All students from good school: {gradebook1.students}")
